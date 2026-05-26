@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}MedPredict{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="nav-brand">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <rect x="1" y="1" width="20" height="20" rx="6" stroke="#00d4ff" stroke-width="1.5"/>
+      <path d="M11 6v10M6 11h10" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    MedPredict
+  </a>
+  <div class="nav-links">
+    <a href="/diabetes" class="nav-link cyan">Diabetes</a>
+    <a href="/heart"    class="nav-link pink">Heart</a>
+    <a href="/obesity"  class="nav-link green">Obesity</a>
+    <a href="/sleep"    class="nav-link purple">Sleep Apnea</a>
+  </div>
+</nav>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <p>MedPredict &mdash; Built for educational purposes only. Not a substitute for medical advice.</p>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

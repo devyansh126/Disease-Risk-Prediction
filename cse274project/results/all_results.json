@@ -1,0 +1,527 @@
+{
+  "diabetes": {
+    "disease": "Diabetes",
+    "best_model": "XGBoost",
+    "accuracy": 73.38,
+    "precision": 59.7,
+    "recall": 74.07,
+    "f1": 66.12,
+    "roc_auc": 80.54,
+    "cv_mean": 73.47,
+    "cv_std": 7.62,
+    "cv_f1_mean": 73.05,
+    "silhouette": 0.1755,
+    "threshold": 0.3,
+    "class_labels": [
+      "Non-Diabetic",
+      "Diabetic"
+    ],
+    "is_multiclass": false,
+    "all_models": {
+      "Logistic Regression": {
+        "accuracy": 67.53,
+        "precision": 52.7,
+        "recall": 72.22,
+        "f1": 60.94,
+        "roc_auc": 76.57,
+        "cv_mean": 70.92,
+        "cv_std": 9.3,
+        "cv_f1_mean": 71.07,
+        "cv_f1_std": 0.09306244486209403
+      },
+      "Naive Bayes": {
+        "accuracy": 67.53,
+        "precision": 53.85,
+        "recall": 51.85,
+        "f1": 52.83,
+        "roc_auc": 69.69,
+        "cv_mean": 73.23,
+        "cv_std": 7.66,
+        "cv_f1_mean": 72.42,
+        "cv_f1_std": 0.08302662020316949
+      },
+      "KNN": {
+        "accuracy": 62.99,
+        "precision": 48.19,
+        "recall": 74.07,
+        "f1": 58.39,
+        "roc_auc": 72.83,
+        "cv_mean": 72.68,
+        "cv_std": 6.03,
+        "cv_f1_mean": 72.15,
+        "cv_f1_std": 0.062107467973427935
+      },
+      "Decision Tree": {
+        "accuracy": 68.83,
+        "precision": 53.95,
+        "recall": 75.93,
+        "f1": 63.08,
+        "roc_auc": 71.5,
+        "cv_mean": 66.04,
+        "cv_std": 6.44,
+        "cv_f1_mean": 66.33,
+        "cv_f1_std": 0.06397018041036212
+      },
+      "Random Forest": {
+        "accuracy": 75.97,
+        "precision": 61.97,
+        "recall": 81.48,
+        "f1": 70.4,
+        "roc_auc": 81.17,
+        "cv_mean": 72.44,
+        "cv_std": 10.89,
+        "cv_f1_mean": 72.65,
+        "cv_f1_std": 0.1088267253622169
+      },
+      "AdaBoost": {
+        "accuracy": 75.32,
+        "precision": 60.81,
+        "recall": 83.33,
+        "f1": 70.31,
+        "roc_auc": 80.56,
+        "cv_mean": 70.69,
+        "cv_std": 6.99,
+        "cv_f1_mean": 70.5,
+        "cv_f1_std": 0.06898999925568365
+      },
+      "Gradient Boosting": {
+        "accuracy": 76.62,
+        "precision": 62.86,
+        "recall": 81.48,
+        "f1": 70.97,
+        "roc_auc": 80.76,
+        "cv_mean": 73.49,
+        "cv_std": 7.16,
+        "cv_f1_mean": 72.68,
+        "cv_f1_std": 0.07725974694189905
+      },
+      "SVM": {
+        "accuracy": 71.43,
+        "precision": 60.87,
+        "recall": 51.85,
+        "f1": 56.0,
+        "roc_auc": 77.25,
+        "cv_mean": 71.41,
+        "cv_std": 11.13,
+        "cv_f1_mean": 71.72,
+        "cv_f1_std": 0.10937864347580212
+      },
+      "XGBoost": {
+        "accuracy": 73.38,
+        "precision": 59.7,
+        "recall": 74.07,
+        "f1": 66.12,
+        "roc_auc": 80.54,
+        "cv_mean": 73.47,
+        "cv_std": 7.62,
+        "cv_f1_mean": 73.05,
+        "cv_f1_std": 0.07625170161719
+      }
+    },
+    "feature_names": [
+      "Pregnancies",
+      "Glucose",
+      "BloodPressure",
+      "SkinThickness",
+      "Insulin",
+      "BMI",
+      "Age"
+    ]
+  },
+  "heart": {
+    "disease": "Heart Disease",
+    "best_model": "Random Forest",
+    "accuracy": 78.69,
+    "precision": 81.25,
+    "recall": 78.79,
+    "f1": 80.0,
+    "roc_auc": 88.2,
+    "cv_mean": 84.17,
+    "cv_std": 6.4,
+    "cv_f1_mean": 84.05,
+    "silhouette": 0.1693,
+    "threshold": 0.45,
+    "class_labels": [
+      "No Heart Disease",
+      "Heart Disease"
+    ],
+    "is_multiclass": false,
+    "all_models": {
+      "Logistic Regression": {
+        "accuracy": 77.05,
+        "precision": 78.79,
+        "recall": 78.79,
+        "f1": 78.79,
+        "roc_auc": 87.12,
+        "cv_mean": 82.08,
+        "cv_std": 3.75,
+        "cv_f1_mean": 81.9,
+        "cv_f1_std": 0.03797153468627487
+      },
+      "Naive Bayes": {
+        "accuracy": 78.69,
+        "precision": 83.33,
+        "recall": 75.76,
+        "f1": 79.37,
+        "roc_auc": 88.74,
+        "cv_mean": 81.25,
+        "cv_std": 3.84,
+        "cv_f1_mean": 80.99,
+        "cv_f1_std": 0.038674701734656966
+      },
+      "KNN": {
+        "accuracy": 78.69,
+        "precision": 77.78,
+        "recall": 84.85,
+        "f1": 81.16,
+        "roc_auc": 83.77,
+        "cv_mean": 81.67,
+        "cv_std": 6.51,
+        "cv_f1_mean": 81.47,
+        "cv_f1_std": 0.06576066390371972
+      },
+      "Decision Tree": {
+        "accuracy": 72.13,
+        "precision": 80.77,
+        "recall": 63.64,
+        "f1": 71.19,
+        "roc_auc": 79.0,
+        "cv_mean": 78.33,
+        "cv_std": 9.65,
+        "cv_f1_mean": 78.2,
+        "cv_f1_std": 0.09836914095047038
+      },
+      "Random Forest": {
+        "accuracy": 78.69,
+        "precision": 81.25,
+        "recall": 78.79,
+        "f1": 80.0,
+        "roc_auc": 88.2,
+        "cv_mean": 84.17,
+        "cv_std": 6.4,
+        "cv_f1_mean": 84.05,
+        "cv_f1_std": 0.06454967005741674
+      },
+      "AdaBoost": {
+        "accuracy": 77.05,
+        "precision": 80.65,
+        "recall": 75.76,
+        "f1": 78.12,
+        "roc_auc": 86.26,
+        "cv_mean": 76.67,
+        "cv_std": 5.95,
+        "cv_f1_mean": 76.44,
+        "cv_f1_std": 0.05999816762989044
+      },
+      "Gradient Boosting": {
+        "accuracy": 75.41,
+        "precision": 78.12,
+        "recall": 75.76,
+        "f1": 76.92,
+        "roc_auc": 84.2,
+        "cv_mean": 82.92,
+        "cv_std": 6.02,
+        "cv_f1_mean": 82.68,
+        "cv_f1_std": 0.06183654432150581
+      },
+      "SVM": {
+        "accuracy": 77.05,
+        "precision": 78.79,
+        "recall": 78.79,
+        "f1": 78.79,
+        "roc_auc": 85.06,
+        "cv_mean": 80.83,
+        "cv_std": 6.51,
+        "cv_f1_mean": 80.66,
+        "cv_f1_std": 0.06509572934948715
+      },
+      "XGBoost": {
+        "accuracy": 80.33,
+        "precision": 81.82,
+        "recall": 81.82,
+        "f1": 81.82,
+        "roc_auc": 87.99,
+        "cv_mean": 82.5,
+        "cv_std": 5.83,
+        "cv_f1_mean": 82.22,
+        "cv_f1_std": 0.05991045883687502
+      }
+    }
+  },
+  "obesity": {
+    "disease": "Obesity",
+    "best_model": "XGBoost",
+    "accuracy": 84.93,
+    "precision": 85.07,
+    "recall": 84.93,
+    "f1": 84.94,
+    "roc_auc": 97.54,
+    "cv_mean": 84.36,
+    "cv_std": 2.95,
+    "cv_f1_mean": 84.39,
+    "silhouette": 0.1564,
+    "threshold": 0.5,
+    "class_labels": [
+      "Underweight",
+      "Normal",
+      "Overweight I",
+      "Overweight II",
+      "Obese I",
+      "Obese II",
+      "Obese III"
+    ],
+    "is_multiclass": true,
+    "all_models": {
+      "Logistic Regression": {
+        "accuracy": 57.66,
+        "precision": 57.0,
+        "recall": 57.66,
+        "f1": 55.59,
+        "roc_auc": 86.47,
+        "cv_mean": 57.64,
+        "cv_std": 3.93,
+        "cv_f1_mean": 55.61,
+        "cv_f1_std": 0.04041461536992203
+      },
+      "Naive Bayes": {
+        "accuracy": 51.44,
+        "precision": 58.29,
+        "recall": 51.44,
+        "f1": 48.33,
+        "roc_auc": 84.77,
+        "cv_mean": 50.74,
+        "cv_std": 7.05,
+        "cv_f1_mean": 46.72,
+        "cv_f1_std": 0.0751300096031368
+      },
+      "KNN": {
+        "accuracy": 75.6,
+        "precision": 75.52,
+        "recall": 75.6,
+        "f1": 74.76,
+        "roc_auc": 91.73,
+        "cv_mean": 74.71,
+        "cv_std": 3.22,
+        "cv_f1_mean": 73.45,
+        "cv_f1_std": 0.03437192307157193
+      },
+      "Decision Tree": {
+        "accuracy": 69.38,
+        "precision": 71.49,
+        "recall": 69.38,
+        "f1": 68.78,
+        "roc_auc": 89.44,
+        "cv_mean": 63.63,
+        "cv_std": 2.21,
+        "cv_f1_mean": 63.05,
+        "cv_f1_std": 0.02493621020756041
+      },
+      "Random Forest": {
+        "accuracy": 78.71,
+        "precision": 78.81,
+        "recall": 78.71,
+        "f1": 78.28,
+        "roc_auc": 96.06,
+        "cv_mean": 77.35,
+        "cv_std": 2.86,
+        "cv_f1_mean": 76.57,
+        "cv_f1_std": 0.03338050940290729
+      },
+      "AdaBoost": {
+        "accuracy": 56.94,
+        "precision": 59.15,
+        "recall": 56.94,
+        "f1": 57.31,
+        "roc_auc": 89.39,
+        "cv_mean": 59.44,
+        "cv_std": 3.4,
+        "cv_f1_mean": 59.66,
+        "cv_f1_std": 0.036128337725702675
+      },
+      "Gradient Boosting": {
+        "accuracy": 82.3,
+        "precision": 82.48,
+        "recall": 82.3,
+        "f1": 82.23,
+        "roc_auc": 97.21,
+        "cv_mean": 83.58,
+        "cv_std": 2.88,
+        "cv_f1_mean": 83.56,
+        "cv_f1_std": 0.02966022323959245
+      },
+      "SVM": {
+        "accuracy": 68.9,
+        "precision": 68.67,
+        "recall": 68.9,
+        "f1": 68.58,
+        "roc_auc": 93.4,
+        "cv_mean": 72.68,
+        "cv_std": 3.79,
+        "cv_f1_mean": 71.99,
+        "cv_f1_std": 0.03844198990387313
+      },
+      "XGBoost": {
+        "accuracy": 84.93,
+        "precision": 85.07,
+        "recall": 84.93,
+        "f1": 84.94,
+        "roc_auc": 97.54,
+        "cv_mean": 84.36,
+        "cv_std": 2.95,
+        "cv_f1_mean": 84.39,
+        "cv_f1_std": 0.02989888598694087
+      }
+    },
+    "feature_names": [
+      "Age",
+      "Gender",
+      "CALC",
+      "FAVC",
+      "FCVC",
+      "NCP",
+      "SCC",
+      "SMOKE",
+      "CH2O",
+      "family_history_with_overweight",
+      "FAF",
+      "TUE",
+      "CAEC",
+      "MTRANS"
+    ]
+  },
+  "sleep_apnea": {
+    "disease": "Sleep Apnea",
+    "best_model": "Random Forest",
+    "accuracy": 77.78,
+    "precision": 81.86,
+    "recall": 77.78,
+    "f1": 75.6,
+    "roc_auc": 80.53,
+    "cv_mean": 77.18,
+    "cv_std": 8.86,
+    "cv_f1_mean": 76.31,
+    "silhouette": 0.3383,
+    "threshold": 0.5,
+    "class_labels": [
+      "No Disorder",
+      "Sleep Apnea",
+      "Insomnia"
+    ],
+    "is_multiclass": true,
+    "all_models": {
+      "Logistic Regression": {
+        "accuracy": 70.37,
+        "precision": 70.37,
+        "recall": 70.37,
+        "f1": 68.76,
+        "roc_auc": 82.31,
+        "cv_mean": 71.45,
+        "cv_std": 9.38,
+        "cv_f1_mean": 69.79,
+        "cv_f1_std": 0.10672652098582806
+      },
+      "Naive Bayes": {
+        "accuracy": 74.07,
+        "precision": 73.65,
+        "recall": 74.07,
+        "f1": 73.66,
+        "roc_auc": 80.17,
+        "cv_mean": 74.36,
+        "cv_std": 7.16,
+        "cv_f1_mean": 74.46,
+        "cv_f1_std": 0.06880795287237099
+      },
+      "KNN": {
+        "accuracy": 74.07,
+        "precision": 73.17,
+        "recall": 74.07,
+        "f1": 72.11,
+        "roc_auc": 77.96,
+        "cv_mean": 67.82,
+        "cv_std": 12.59,
+        "cv_f1_mean": 63.65,
+        "cv_f1_std": 0.15971255589274802
+      },
+      "Decision Tree": {
+        "accuracy": 70.37,
+        "precision": 76.54,
+        "recall": 70.37,
+        "f1": 66.19,
+        "roc_auc": 71.71,
+        "cv_mean": 58.18,
+        "cv_std": 12.49,
+        "cv_f1_mean": 55.88,
+        "cv_f1_std": 0.13089104047440173
+      },
+      "Random Forest": {
+        "accuracy": 77.78,
+        "precision": 81.86,
+        "recall": 77.78,
+        "f1": 75.6,
+        "roc_auc": 80.53,
+        "cv_mean": 77.18,
+        "cv_std": 8.86,
+        "cv_f1_mean": 76.31,
+        "cv_f1_std": 0.10315734214884469
+      },
+      "AdaBoost": {
+        "accuracy": 55.56,
+        "precision": 56.48,
+        "recall": 55.56,
+        "f1": 55.45,
+        "roc_auc": 67.84,
+        "cv_mean": 62.91,
+        "cv_std": 14.11,
+        "cv_f1_mean": 63.0,
+        "cv_f1_std": 0.1508638519317369
+      },
+      "Gradient Boosting": {
+        "accuracy": 74.07,
+        "precision": 78.13,
+        "recall": 74.07,
+        "f1": 71.92,
+        "roc_auc": 78.8,
+        "cv_mean": 70.45,
+        "cv_std": 9.13,
+        "cv_f1_mean": 68.33,
+        "cv_f1_std": 0.11283431857260134
+      },
+      "SVM": {
+        "accuracy": 70.37,
+        "precision": 68.65,
+        "recall": 70.37,
+        "f1": 68.99,
+        "roc_auc": 75.7,
+        "cv_mean": 73.36,
+        "cv_std": 9.43,
+        "cv_f1_mean": 72.91,
+        "cv_f1_std": 0.10151773109291459
+      },
+      "XGBoost": {
+        "accuracy": 77.78,
+        "precision": 81.86,
+        "recall": 77.78,
+        "f1": 75.6,
+        "roc_auc": 77.7,
+        "cv_mean": 75.36,
+        "cv_std": 12.17,
+        "cv_f1_mean": 74.08,
+        "cv_f1_std": 0.13529630354878927
+      }
+    },
+    "feature_names": [
+      "Gender",
+      "Age",
+      "Occupation",
+      "Sleep Duration",
+      "Quality of Sleep",
+      "Physical Activity Level",
+      "Stress Level",
+      "BMI Category",
+      "Heart Rate",
+      "Daily Steps",
+      "Systolic",
+      "Diastolic"
+    ]
+  }
+}

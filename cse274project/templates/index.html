@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}MedPredict — AI Disease Risk Prediction{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">AI-Powered Health Screening</div>
+    <h1 class="hero-title">
+      Detect health risks<br>
+      <span class="hero-accent">before they detect you</span>
+    </h1>
+    <p class="hero-sub">
+      Enter your medical report values and get instant risk predictions
+      for four major diseases — powered by machine learning models trained
+      on real clinical datasets.
+    </p>
+    <a href="#diseases" class="btn-primary">Get Started</a>
+  </div>
+
+  <div class="hero-orbs" aria-hidden="true">
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-purple"></div>
+    <div class="orb orb-pink"></div>
+  </div>
+</section>
+
+<section class="diseases" id="diseases">
+  <h2 class="section-title">Choose a Disease to Predict</h2>
+  <div class="cards-grid">
+    {% for card in cards %}
+    <a href="/{{ card.key }}" class="disease-card {{ card.color }}" style="--i: {{ loop.index0 }}">
+      <div class="card-icon">
+        {% if card.icon == 'drop' %}
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C12 2 5 9.5 5 14a7 7 0 0 0 14 0C19 9.5 12 2 12 2z"/>
+        </svg>
+        {% elif card.icon == 'heart' %}
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        {% elif card.icon == 'activity' %}
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        {% elif card.icon == 'moon' %}
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        {% endif %}
+      </div>
+      <h3 class="card-title">{{ card.title }}</h3>
+      <p class="card-desc">{{ card.desc }}</p>
+      <span class="card-cta">Check risk &rarr;</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="how-it-works">
+  <h2 class="section-title">How It Works</h2>
+  <div class="steps-row">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Select disease</h4>
+      <p>Choose one of the four diseases from the cards above</p>
+    </div>
+    <div class="step-arrow">&rarr;</div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Enter your values</h4>
+      <p>Fill in your medical report or test values in the form</p>
+    </div>
+    <div class="step-arrow">&rarr;</div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Get prediction</h4>
+      <p>Receive an instant risk percentage with a colour indicator</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

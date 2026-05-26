@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% block title %}{{ cfg.title }} Risk Check — MedPredict{% endblock %}
+
+{% block content %}
+<div class="form-page">
+
+  <div class="form-header {{ cfg.color }}">
+    <a href="/" class="back-link">&larr; Back</a>
+    <div class="form-icon">
+      {% if cfg.icon == 'drop' %}
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C12 2 5 9.5 5 14a7 7 0 0 0 14 0C19 9.5 12 2 12 2z"/>
+      </svg>
+      {% elif cfg.icon == 'heart' %}
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+      {% elif cfg.icon == 'activity' %}
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+      {% elif cfg.icon == 'moon' %}
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      {% endif %}
+    </div>
+    <h1 class="form-title">{{ cfg.title }} Risk Assessment</h1>
+    <p class="form-subtitle">{{ cfg.subtitle }}</p>
+  </div>
+
+  <form class="prediction-form" id="predForm" novalidate>
+    <div class="fields-grid">
+      {% for field in cfg.fields %}
+      <div class="field-group" style="--fi: {{ loop.index0 }}">
+        <label for="{{ field.name }}">{{ field.label }}</label>
+        {% if field.type == 'select' %}
+        <select name="{{ field.name }}" id="{{ field.name }}" required>
+          <option value="" disabled selected>Select…</option>
+          {% for val, text in field.options %}
+          <option value="{{ val }}">{{ text }}</option>
+          {% endfor %}
+        </select>
+        {% else %}
+        <input
+          type="number"
+          name="{{ field.name }}"
+          id="{{ field.name }}"
+          min="{{ field.min }}"
+          max="{{ field.max }}"
+          step="{{ field.step }}"
+          placeholder="{{ field.placeholder }}"
+          required
+        >
+        {% endif %}
+        <span class="field-error" id="err_{{ field.name }}"></span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-predict {{ cfg.color }}" id="submitBtn">
+        <span class="btn-text">Predict Risk</span>
+        <span class="btn-spinner" hidden>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </form>
+
+  <!-- ── Result panel ──────────────────────────────────────────────────────── -->
+  <div class="result-panel" id="resultPanel" hidden>
+    <div class="result-inner">
+      <div class="result-meter-wrap">
+        <svg class="risk-meter" viewBox="0 0 200 120" width="200" height="120">
+          <path d="M20 110 A90 90 0 0 1 180 110" fill="none" stroke="#1e2235" stroke-width="14" stroke-linecap="round"/>
+          <path id="meterArc" d="M20 110 A90 90 0 0 1 180 110" fill="none" stroke="#00e5a0" stroke-width="14" stroke-linecap="round"
+                stroke-dasharray="283" stroke-dashoffset="283"/>
+          <text id="meterPct" x="100" y="100" text-anchor="middle" font-size="28" font-weight="600" fill="#e8eaf0">0%</text>
+        </svg>
+      </div>
+      <div class="result-badge" id="resultBadge">—</div>
+      <h2 class="result-prediction" id="resultPrediction">—</h2>
+      <p class="result-note" id="resultNote">—</p>
+      <div class="prob-breakdown" id="probBreakdown" hidden>
+        <h4>Probability breakdown</h4>
+        <div class="prob-bars" id="probBars"></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn-secondary" onclick="resetForm()">Check Again</button>
+        <a href="/" class="btn-secondary">Home</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Model Stats panel ─────────────────────────────────────────────────── -->
+  {% if stats %}
+  <div class="stats-panel">
+
+    <div class="stats-header" id="statsToggle" onclick="toggleStats()">
+      <div class="stats-header-left">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6"  y1="20" x2="6"  y2="14"/>
+        </svg>
+        <span>Model Performance &amp; Training Results</span>
+      </div>
+      <span class="stats-chevron" id="statsChevron">&#9660;</span>
+    </div>
+
+    <div class="stats-body" id="statsBody">
+
+      <!-- Best model scorecard -->
+      <div class="stats-section">
+        <p class="stats-label">Best model selected by 10-fold cross-validation F1</p>
+        <div class="scorecard-row">
+          <div class="scorecard-item">
+            <span class="sc-label">Best model</span>
+            <span class="sc-value {{ cfg.color }}">{{ stats.best_model }}</span>
+          </div>
+          <div class="scorecard-item">
+            <span class="sc-label">Test accuracy</span>
+            <span class="sc-value">{{ stats.accuracy }}%</span>
+          </div>
+          <div class="scorecard-item">
+            <span class="sc-label">Test F1</span>
+            <span class="sc-value">{{ stats.f1 }}%</span>
+          </div>
+          <div class="scorecard-item">
+            <span class="sc-label">ROC AUC</span>
+            <span class="sc-value">{{ stats.roc_auc }}%</span>
+          </div>
+          <div class="scorecard-item">
+            <span class="sc-label">CV F1 (10-fold)</span>
+            <span class="sc-value">{{ stats.cv_f1_mean }}%</span>
+          </div>
+          {% if not stats.is_multiclass %}
+          <div class="scorecard-item">
+            <span class="sc-label">Decision threshold</span>
+            <span class="sc-value">{{ stats.threshold }}</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="stats-section">
+        <p class="stats-label">All models — CV F1 vs Test F1 comparison</p>
+        <div class="model-chart-wrap">
+          <canvas id="modelChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Feature tags -->
+      {% if stats.feature_names %}
+      <div class="stats-section">
+        <p class="stats-label">Features used by the model ({{ stats.feature_names | length }} total)</p>
+        <div class="feature-tags">
+          {% for feat in stats.feature_names %}
+          <span class="feat-tag {{ cfg.color }}">{{ feat }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Full table -->
+      <div class="stats-section">
+        <p class="stats-label">All models ranked by CV F1 — detailed metrics</p>
+        <div class="model-table-wrap">
+          <table class="model-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1</th>
+                <th>ROC AUC</th>
+                <th>CV F1</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for model_name, m in stats.all_models.items() | sort(attribute='1.cv_f1_mean', reverse=True) %}
+              <tr {% if model_name == stats.best_model %}class="best-row"{% endif %}>
+                <td class="model-name-cell">
+                  {% if model_name == stats.best_model %}
+                  <span class="best-badge {{ cfg.color }}">&#9733;</span>
+                  {% endif %}
+                  {{ model_name }}
+                </td>
+                <td>{{ m.accuracy }}%</td>
+                <td>{{ m.precision }}%</td>
+                <td>{{ m.recall }}%</td>
+                <td>{{ m.f1 }}%</td>
+                <td>{{ m.roc_auc }}%</td>
+                <td class="cv-col"><strong>{{ m.cv_f1_mean }}%</strong></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /stats-body -->
+  </div><!-- /stats-panel -->
+
+  <script>
+    const DISEASE      = "{{ disease }}";
+    const STATS_COLOR  = "{{ cfg.color }}";
+    const MODEL_LABELS = {{ stats.all_models.keys()  | list | tojson }};
+    const CV_F1_DATA   = {{ stats.all_models.values() | map(attribute='cv_f1_mean') | list | tojson }};
+    const TEST_F1_DATA = {{ stats.all_models.values() | map(attribute='f1')         | list | tojson }};
+    const BEST_MODEL   = {{ stats.best_model | tojson }};
+  </script>
+
+  {% else %}
+  <script>const DISEASE = "{{ disease }}";</script>
+  {% endif %}
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+{% endblock %}
